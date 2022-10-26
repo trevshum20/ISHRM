@@ -1,0 +1,114 @@
+﻿
+@{
+}
+
+<h2 class="text-center my-3">Edit Employee</h2>
+<form>
+    <h4 class="my-3">Basic Data</h4>
+    <div style="display:grid; grid-template-columns: .5fr 1fr .5fr 1fr; grid-template-rows: auto; grid-row-gap: 1rem; grid-column-gap: .5rem;">
+        <span>BYUID</span>
+        <input class="form-control" type="number" />
+        <span>NetID</span>
+        <input class="form-control" type="text" />
+        <span>First Name</span>
+        <input class="form-control" type="text" />
+        <span>Last Name</span>
+        <input class="form-control" type="text" />
+        <span>Name Change?</span>
+        <input type="checkbox" class="form-check" />
+        <span>International Student?</span>
+        <input type="checkbox" class="form-check" />
+        <span>Gender</span>
+        <select class="form-control">
+            <option>Female</option>
+            <option>Male</option>
+            <option>Non-Binary</option>
+        </select>
+        <span>Email</span>
+        <input type="email" class="form-control" />
+        <span>Phone</span>
+        <input type="tel" class="form-control" />
+        <span>BYU Name (if different)</span>
+        <input type="text" class="form-control" />
+    </div>
+    <div class="mt-3">Student Notes</div>
+<textarea class="form-control mb-3"></textarea>
+    <h4 class="my-3 mt-5">Employment Data</h4>
+    <div style="display:grid; grid-template-columns: .5fr 1fr .5fr 1fr; grid-template-rows: auto; grid-row-gap: 1rem; grid-column-gap: 1rem;">
+        <span>Expected Hours</span>
+        <input class="form-control" type="number" />
+        <span>Semester and Year</span>
+        <select class="form-control">
+            <option>Fall 2022</option>
+            <option>Winter 2023</option>
+            <option>Spring 2023</option>
+            <option>Summer 2023</option>
+        </select>
+        <span>Position</span>
+        <select class="form-control">
+            <option>RA</option>
+            <option>TA</option>
+            <option>Office</option>
+            <option>Student Instructor</option>
+            <option>Other</option>
+        </select>
+        <span>Course</span>
+        <select class="form-control">
+            <option>IS201</option>
+            <option>IS303</option>
+            <option>IS401</option>
+            <option>IS402</option>
+            <option>IS403</option>
+        </select>
+        <span>Employee Record (BYU)</span>
+        <input type="number" class="form-control" min="0" max="3" />
+        <span>Supervisor</span>
+        <select class="form-control">
+            <option>Greg Anderson</option>
+            <option>Degan Kettles</option>
+            <option>Spencer Hilton</option>
+            <option>Jeff Jenkins</option>
+        </select>
+        <span>Hire Date</span>
+        <input type="date" class="form-control" />
+        <span>Pay Rate</span>
+        <input type="number" class="form-control" />
+        <span>Last Pay Increase</span>
+        <input type="date" class="form-control" />
+        <span>Last Pay Increase Amount</span>
+        <input type="number" class="form-control" />
+         <span>Pay Increase Effective Date</span>
+        <input type="date" class="form-control" />
+        <span>Program</span>
+        <select class="form-control">
+            <option>MISM</option>
+            <option>MACC</option>
+            <option>MBA</option>
+            <option>MPA</option>
+            <option>MSB Core</option>
+            <option>Other Major</option>
+        </select>
+        <span>Pays Grad Tuition?</span>
+        <input type="checkbox" class="form-check" />
+        <!--<span>Terminated?</span>
+        <input type="checkbox" class="form-check" />
+        <span>Termination Start Date</span>
+        <input type="date" class="form-control"/>-->
+        <span>Qualtrics Email Sent Date</span>
+        <input type="date" class="form-control" />
+        <span>E Form Submit Date</span>
+        <input type="date" class="form-control" />
+        <span>Work Authorization Received</span>
+        <input type="date" class="form-control" />
+        <span>Work Authorization Email Date</span>
+        <input type="date" class="form-control" />
+    </div>
+    <div class="mt-3">Employment Notes</div>
+<textarea class="form-control mb-3"></textarea>
+
+    <div class="d-flex justify-content-center mt-3">
+        <button type="submit" class="btn btn-primary mr-3">Submit</button>
+        <a class="btn btn-danger" asp-controller="Home" asp-action="Index">Cancel</a>
+    </div>
+
+</form>

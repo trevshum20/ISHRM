@@ -3,32 +3,24 @@
 }
 
 <h2 class="text-center my-3">IS Department Employee Database</h2>
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center flex-wrap">
     <div class="card mr-2" style="width: 18rem;">
-        <img class="card-img-top" src="~/img/city.jpg" alt="Card image cap">
+        <img class="card-img-top" src="~/img/employees.jpg" alt="Card image cap">
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title">View Employee Data</h5>
+            <p class="card-text">View, edit, and filter existing employee data.</p>
+            <a asp-controller="Home" asp-action="EmployeeData" class="btn btn-primary">View Data</a>
         </div>
     </div>
     <div class="card mr-2" style="width: 18rem;">
-        <img class="card-img-top" src="~/img/city.jpg" alt="Card image cap">
+        <img class="card-img-top" src="~/img/job.jpg" alt="Card image cap">
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title">Add Employee Data</h5>
+            <p class="card-text">Add new employee information to the database.</p>
+            <a asp-controller="Home" asp-action="CreateEmployee" class="btn btn-primary">Add Employee</a>
         </div>
     </div>
-    <div class="card mr-2" style="width: 18rem;">
-        <img class="card-img-top" src="~/img/city.jpg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-    <div class="card mr-2" style="width: 18rem;">
+    <div class="card mr-2" style="width: 18rem; opacity:0">
         <img class="card-img-top" src="~/img/city.jpg" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">Card title</h5>
