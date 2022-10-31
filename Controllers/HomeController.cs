@@ -22,6 +22,19 @@ namespace ISHRM.Controllers
         {
             return View();
         }
+        public IActionResult EmployeeData()
+        {
+            return View();
+        }
+
+        public IActionResult CreateEmployee()
+        {
+            return View();
+        }
+        public IActionResult EditEmployee()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
