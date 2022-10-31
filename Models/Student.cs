@@ -14,7 +14,6 @@ namespace ISHRM.Models
         public bool International { get; set; }
         public string Gender { get; set; }
         public string Email { get; set; }
-        public string NetID { get; set; }
         public bool NameChange { get; set; }
         public string Notes { get; set; }
         public string BYUName { get; set; }

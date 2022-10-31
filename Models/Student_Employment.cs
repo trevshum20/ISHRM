@@ -46,14 +46,11 @@ namespace ISHRM.Models
         [Required]
         public double PayRate { get; set; }
 
-        [Required]
-        public DateTime LastPayInc { get; set; }
+        public DateTime? LastPayInc { get; set; }
 
-        [Required]
-        public double LastPayIncAmount { get; set; }
+        public double? LastPayIncAmount { get; set; }
 
-        [Required]
-        public DateTime PayIncDate { get; set; }
+        public DateTime? PayIncDate { get; set; }
 
         // Foreign Key
         [Required]
@@ -63,19 +60,19 @@ namespace ISHRM.Models
         [Required]
         public bool PayGradTuition { get; set; }
 
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
         [Required]
         public bool Terminated { get; set; }
 
-        public DateTime TerminationStart { get; set; }
+        public DateTime? TerminationStart { get; set; }
 
-        public DateTime QualtricsSent { get; set; }
+        public DateTime? QualtricsSent { get; set; }
 
-        public DateTime SubmittedEForm { get; set; }
+        public DateTime? SubmittedEForm { get; set; }
 
-        public DateTime AuthorizationToWorkRec { get; set; }
+        public DateTime? AuthorizationToWorkRec { get; set; }
 
-        public DateTime AuthorizationEmailSentDate { get; set; }
+        public DateTime? AuthorizationEmailSentDate { get; set; }
     }
 }
