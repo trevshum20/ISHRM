@@ -1,0 +1,60 @@
+﻿
+@{
+}
+
+<h2 class="text-center my-3">Employee Data</h2>
+
+<form class="d-flex justify-content-center align-items-center mb-3">
+    <span class="mr-5">Filter By:</span>
+    <select class="form-control w-auto mr-3">
+        <option hidden>Supervisor</option>
+        <option>Greg Anderson</option>
+        <option>Degan Kettles</option>
+        <option>Spencer Hilton</option>
+        <option>All</option>
+    </select>
+    <select class="form-control w-auto mr-5">
+        <option hidden>Semester</option>
+        <option>Current Semester</option>
+        <option>Fall 2021</option>
+        <option>Winter 2022</option>
+        <option>Spring 2022</option>
+        <option>Summer 2022</option>
+        <option>All</option>
+    </select>
+    <button class="btn btn-primary mr-2" type="submit">Filter</button>
+    <a class="btn btn-danger" asp-controller="Home" asp-action="EmployeeData">Clear</a>
+</form>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name
+            <th scope="col">Supervisor</th>
+            <th scope="col">Position</th>
+            <th scope="col">Program</th>
+            <th scope="col">Semester</th>
+            <th scope="col"></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < 10; i++)
+        {
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark Otto</td>
+            <td>John Doe</td>
+            <td>TA</td>
+            <td>MISM</td>
+            <td>Fall 2022</td>
+            <td>
+                <div class="btn-group" role="group" aria-label="Edit/Delete Buttons">
+                    <a asp-controller="Home" asp-action="EditEmployee" class="btn btn-primary px-4">Edit</a>
+                    <button type="button" class="btn btn-danger">Delete</button>
+                </div>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
