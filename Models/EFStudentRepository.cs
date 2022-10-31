@@ -14,6 +14,14 @@ namespace ISHRM.Models
         }
         public IQueryable<Student> Students => context.Students;
         public IQueryable<Student_Employment> Employees => context.Employees;
+        public IQueryable<Alert> Alerts => context.Alerts;
+        public IQueryable<Course> Course => context.Courses;
+        public IQueryable<Position> Positions => context.Positions;
+        public IQueryable<ProgramYear> ProgramYears => context.ProgramYears;
+        public IQueryable<Semester_Year> SemesterYears => context.SemesterYears;
+        public IQueryable<Supervisor> Supervisors => context.Supervisors;
+
+
         public void CreateStudentEmployee(Student_Employment student)
         {
             context.Add(student.Student);

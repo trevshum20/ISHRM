@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ISHRM.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -118,6 +118,7 @@ namespace ISHRM.Migrations
                     StudentEmploymentID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     BYUID = table.Column<int>(nullable: false),
+                    StudentBYUID = table.Column<int>(nullable: true),
                     ExpectedHours = table.Column<int>(nullable: false),
                     SemesterYearID = table.Column<int>(nullable: false),
                     Semester_YearSemesterYearID = table.Column<int>(nullable: true),
@@ -167,6 +168,12 @@ namespace ISHRM.Migrations
                         column: x => x.Semester_YearSemesterYearID,
                         principalTable: "SemesterYears",
                         principalColumn: "SemesterYearID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Employees_Students_StudentBYUID",
+                        column: x => x.StudentBYUID,
+                        principalTable: "Students",
+                        principalColumn: "BYUID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Employees_Supervisors_SupervisorID",
@@ -312,6 +319,11 @@ namespace ISHRM.Migrations
                 column: "Semester_YearSemesterYearID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Employees_StudentBYUID",
+                table: "Employees",
+                column: "StudentBYUID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Employees_SupervisorID",
                 table: "Employees",
                 column: "SupervisorID");
@@ -326,9 +338,6 @@ namespace ISHRM.Migrations
                 name: "Employees");
 
             migrationBuilder.DropTable(
-                name: "Students");
-
-            migrationBuilder.DropTable(
                 name: "Courses");
 
             migrationBuilder.DropTable(
@@ -339,6 +348,9 @@ namespace ISHRM.Migrations
 
             migrationBuilder.DropTable(
                 name: "SemesterYears");
+
+            migrationBuilder.DropTable(
+                name: "Students");
 
             migrationBuilder.DropTable(
                 name: "Supervisors");

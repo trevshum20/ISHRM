@@ -63,11 +63,12 @@
         <span>Employee Record (BYU)</span>
         <input type="number" class="form-control" min="0" max="3" />
         <span>Supervisor</span>
-        <select class="form-control">
-            <option>Greg Anderson</option>
-            <option>Degan Kettles</option>
-            <option>Spencer Hilton</option>
-            <option>Jeff Jenkins</option>
+        <select name="supervisor" class="form-control">
+            @foreach (var s in ViewBag.Supervisors)
+            {
+                <option value="@s.SupervisorID">@s.SupervisorFirstName @s.SupervisorLastName</option>
+            }
+
         </select>
         <span>Hire Date</span>
         <input type="date" class="form-control" />

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ISHRM.Migrations
 {
     [DbContext(typeof(ClassProjectDBContext))]
-    [Migration("20221031203307_Initial")]
-    partial class Initial
+    [Migration("20221031211628_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -266,6 +266,9 @@ namespace ISHRM.Migrations
                     b.Property<int?>("Semester_YearSemesterYearID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("StudentBYUID")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime?>("SubmittedEForm")
                         .HasColumnType("TEXT");
 
@@ -287,6 +290,8 @@ namespace ISHRM.Migrations
                     b.HasIndex("ProgramYearProgramID");
 
                     b.HasIndex("Semester_YearSemesterYearID");
+
+                    b.HasIndex("StudentBYUID");
 
                     b.HasIndex("SupervisorID");
 
@@ -408,6 +413,10 @@ namespace ISHRM.Migrations
                     b.HasOne("Semester_Year", "Semester_Year")
                         .WithMany()
                         .HasForeignKey("Semester_YearSemesterYearID");
+
+                    b.HasOne("ISHRM.Models.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentBYUID");
 
                     b.HasOne("ISHRM.Models.Supervisor", "Supervisor")
                         .WithMany()
