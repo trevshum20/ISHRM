@@ -63,11 +63,12 @@
         <span>Employee Record (BYU)</span>
         <input type="number" class="form-control" min="0" max="3" />
         <span>Supervisor</span>
-        <select class="form-control">
-            <option>Greg Anderson</option>
-            <option>Degan Kettles</option>
-            <option>Spencer Hilton</option>
-            <option>Jeff Jenkins</option>
+        <select name="supervisor" class="form-control">
+            @foreach (var s in ViewBag.Supervisors)
+            {
+                <option value="@s.SupervisorID">@s.SupervisorFirstName @s.SupervisorLastName</option>
+            }
+
         </select>
         <span>Hire Date</span>
         <input type="date" class="form-control" />
@@ -77,7 +78,7 @@
         <input type="date" class="form-control" />
         <span>Last Pay Increase Amount</span>
         <input type="number" class="form-control" />
-         <span>Pay Increase Effective Date</span>
+        <span>Pay Increase Effective Date</span>
         <input type="date" class="form-control" />
         <span>Program</span>
         <select class="form-control">
@@ -91,9 +92,9 @@
         <span>Pays Grad Tuition?</span>
         <input type="checkbox" class="form-check" />
         <!--<span>Terminated?</span>
-        <input type="checkbox" class="form-check" />
-        <span>Termination Start Date</span>
-        <input type="date" class="form-control"/>-->
+    <input type="checkbox" class="form-check" />
+    <span>Termination Start Date</span>
+    <input type="date" class="form-control"/>-->
         <span>Qualtrics Email Sent Date</span>
         <input type="date" class="form-control" />
         <span>E Form Submit Date</span>

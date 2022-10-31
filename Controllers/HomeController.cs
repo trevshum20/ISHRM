@@ -11,27 +11,27 @@ namespace ISHRM.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private IStudentRepository repo;
+        public HomeController(IStudentRepository temp)
         {
-            _logger = logger;
+            repo = temp;
         }
 
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult EmployeeData()
+        public IActionResult EditEmployee()
         {
+            ViewBag.Supervisors = repo.Supervisors;
             return View();
         }
-
         public IActionResult CreateEmployee()
         {
+            ViewBag.Supervisors = repo.Supervisors;
             return View();
         }
-        public IActionResult EditEmployee()
+        public IActionResult EmployeeData()
         {
             return View();
         }
