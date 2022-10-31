@@ -23,8 +23,8 @@ namespace ISHRM.Models
         public DbSet<ProgramYear> ProgramYears { get; set; }
         public DbSet<Semester_Year> SemesterYears { get; set; }
         public DbSet<Supervisor> Supervisors { get; set; }
-        //public DbSet<Student> Students { get; set; }
-        //public DbSet<Student_Employment> Employees {get; set;}
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Student_Employment> Employees {get; set;}
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
