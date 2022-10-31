@@ -12,7 +12,7 @@ namespace ISHRM.Models
         // Foreign Key
         [Required]
         public int BYUID { get; set; }
-        //public Student Student { get; set; }
+        public Student Student { get; set; }
 
         [Required]
         public int ExpectedHours { get; set; }
