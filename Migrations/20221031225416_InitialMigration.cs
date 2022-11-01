@@ -89,6 +89,7 @@ namespace ISHRM.Migrations
                     Gender = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     NameChange = table.Column<bool>(nullable: false),
+                    Phone = table.Column<string>(nullable: true),
                     Notes = table.Column<string>(nullable: true),
                     BYUName = table.Column<string>(nullable: true)
                 },

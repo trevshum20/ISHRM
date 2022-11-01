@@ -196,6 +196,9 @@ namespace ISHRM.Migrations
                     b.Property<string>("Notes")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Phone")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("BYUID");
 
                     b.ToTable("Students");
