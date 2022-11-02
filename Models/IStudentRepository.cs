@@ -7,5 +7,18 @@ namespace ISHRM.Models
 {
     public interface IStudentRepository
     {
+        IQueryable<Student> Students { get; }
+        IQueryable<Student_Employment> GetEmployees();
+        IQueryable<Alert> Alerts { get; }
+        IQueryable<Course> Course { get; }
+        IQueryable<Position> Positions { get; }
+        IQueryable<ProgramYear> ProgramYears { get; }
+        IQueryable<Semester_Year> SemesterYears { get; }
+        IQueryable<Supervisor> Supervisors { get; }
+        void CreateStudentEmployee(Student_Employment student);
+        void EditStudentEmployee(Student_Employment student);
+        void DeleteStudentEmployee(Student_Employment student);
+        void FilterStudentList(int supervisorid, int semesteryearid);
+
     }
 }

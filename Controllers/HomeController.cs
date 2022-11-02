@@ -11,29 +11,60 @@ namespace ISHRM.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private IStudentRepository repo;
+        public HomeController(IStudentRepository temp)
         {
-            _logger = logger;
+            repo = temp;
         }
 
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult EmployeeData()
+        public IActionResult EditEmployee(int id)
         {
-            return View();
+            ViewBag.Supervisors = repo.Supervisors;
+            ViewBag.SemesterYears = repo.SemesterYears;
+            ViewBag.Positions = repo.Positions;
+            ViewBag.Courses = repo.Course;
+            ViewBag.Programs = repo.ProgramYears;
+            Student_Employment s = repo.GetEmployees().Where(s => s.StudentEmploymentID == id).FirstOrDefault();
+            return View(s);
         }
+        [HttpPost]
+        public IActionResult EditEmployee(Student_Employment stu)
+        {
+            repo.EditStudentEmployee(stu);
 
+            return RedirectToAction("EditEmployee", new { id = stu.StudentEmploymentID });
+        }
         public IActionResult CreateEmployee()
         {
+            ViewBag.Supervisors = repo.Supervisors;
+            ViewBag.SemesterYears = repo.SemesterYears;
+            ViewBag.Positions = repo.Positions;
+            ViewBag.Courses = repo.Course;
+            ViewBag.Programs = repo.ProgramYears;
             return View();
         }
-        public IActionResult EditEmployee()
+        [HttpPost]
+        public IActionResult CreateEmployee(Student_Employment stu)
         {
+            repo.CreateStudentEmployee(stu);
+
+            return RedirectToAction("EmployeeData");
+        }
+        public IActionResult EmployeeData()
+        {
+            ViewBag.Employees = repo.GetEmployees();
             return View();
+        }
+        public IActionResult DeleteEmployee(int id)
+        {
+            Student_Employment s = repo.GetEmployees().Where(s => s.StudentEmploymentID == id).FirstOrDefault();
+            repo.DeleteStudentEmployee(s);
+
+            return RedirectToAction("EmployeeData");
         }
 
         public IActionResult Privacy()
