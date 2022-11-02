@@ -69,7 +69,15 @@ namespace ISHRM.Migrations
                     b.Property<DateTime>("StartAlert")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("StudentEmploymentID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("Student_EmploymentStudentEmploymentID")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("AlertID");
+
+                    b.HasIndex("Student_EmploymentStudentEmploymentID");
 
                     b.ToTable("Alerts");
                 });
@@ -391,6 +399,13 @@ namespace ISHRM.Migrations
                             SemesterName = "Fall",
                             Year = 2022
                         });
+                });
+
+            modelBuilder.Entity("ISHRM.Models.Alert", b =>
+                {
+                    b.HasOne("ISHRM.Models.Student_Employment", "Student_Employment")
+                        .WithMany()
+                        .HasForeignKey("Student_EmploymentStudentEmploymentID");
                 });
 
             modelBuilder.Entity("ISHRM.Models.Student_Employment", b =>
