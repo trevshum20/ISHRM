@@ -21,19 +21,50 @@ namespace ISHRM.Controllers
         {
             return View();
         }
-        public IActionResult EditEmployee()
+        public IActionResult EditEmployee(int id)
         {
             ViewBag.Supervisors = repo.Supervisors;
-            return View();
+            ViewBag.SemesterYears = repo.SemesterYears;
+            ViewBag.Positions = repo.Positions;
+            ViewBag.Courses = repo.Course;
+            ViewBag.Programs = repo.ProgramYears;
+            Student_Employment s = repo.GetEmployees().Where(s => s.StudentEmploymentID == id).FirstOrDefault();
+            return View(s);
+        }
+        [HttpPost]
+        public IActionResult EditEmployee(Student_Employment stu)
+        {
+            repo.EditStudentEmployee(stu);
+
+            return RedirectToAction("EditEmployee", new { id = stu.StudentEmploymentID });
         }
         public IActionResult CreateEmployee()
         {
             ViewBag.Supervisors = repo.Supervisors;
+            ViewBag.SemesterYears = repo.SemesterYears;
+            ViewBag.Positions = repo.Positions;
+            ViewBag.Courses = repo.Course;
+            ViewBag.Programs = repo.ProgramYears;
             return View();
+        }
+        [HttpPost]
+        public IActionResult CreateEmployee(Student_Employment stu)
+        {
+            repo.CreateStudentEmployee(stu);
+
+            return RedirectToAction("EmployeeData");
         }
         public IActionResult EmployeeData()
         {
+            ViewBag.Employees = repo.GetEmployees();
             return View();
+        }
+        public IActionResult DeleteEmployee(int id)
+        {
+            Student_Employment s = repo.GetEmployees().Where(s => s.StudentEmploymentID == id).FirstOrDefault();
+            repo.DeleteStudentEmployee(s);
+
+            return RedirectToAction("EmployeeData");
         }
 
         public IActionResult Privacy()

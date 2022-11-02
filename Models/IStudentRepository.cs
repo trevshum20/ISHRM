@@ -8,7 +8,7 @@ namespace ISHRM.Models
     public interface IStudentRepository
     {
         IQueryable<Student> Students { get; }
-        IQueryable<Student_Employment> Employees { get; }
+        IQueryable<Student_Employment> GetEmployees();
         IQueryable<Alert> Alerts { get; }
         IQueryable<Course> Course { get; }
         IQueryable<Position> Positions { get; }

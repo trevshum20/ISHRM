@@ -39,19 +39,19 @@
         </tr>
     </thead>
     <tbody>
-        @for (int i = 0; i < 10; i++)
+        @foreach(Student_Employment s in ViewBag.Employees)
         {
         <tr>
-            <th scope="row">1</th>
-            <td>Mark Otto</td>
-            <td>John Doe</td>
-            <td>TA</td>
-            <td>MISM</td>
-            <td>Fall 2022</td>
+            <th scope="row">@s.StudentEmploymentID</th>
+            <td>@s.Student.FirstName @s.Student.LastName</td>
+            <td>@s.Supervisor.SupervisorFirstName @s.Supervisor.SupervisorLastName</td>
+            <td>@s.Position.PositionName</td>
+            <td>@s.ProgramYear.ProgramName</td>
+            <td>@s.Semester_Year.SemesterName @s.Semester_Year.Year</td>
             <td>
                 <div class="btn-group" role="group" aria-label="Edit/Delete Buttons">
-                    <a asp-controller="Home" asp-action="EditEmployee" class="btn btn-primary px-4">Edit</a>
-                    <button type="button" class="btn btn-danger">Delete</button>
+                    <a asp-controller="Home" asp-action="EditEmployee" asp-route-id="@s.StudentEmploymentID" class="btn btn-primary px-4">Edit</a>
+                    <a type="button" class="btn btn-danger" asp-controller="Home" asp-action="DeleteEmployee" asp-route-id="@s.StudentEmploymentID" onclick="return confirm('Are you sure you sure you want to delete this person?')">Delete</a>
                 </div>
             </td>
         </tr>

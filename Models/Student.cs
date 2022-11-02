@@ -15,6 +15,7 @@ namespace ISHRM.Models
         public string Gender { get; set; }
         public string Email { get; set; }
         public bool NameChange { get; set; }
+        public string Phone { get; set; }
         public string? Notes { get; set; }
         public string BYUName { get; set; }
     }
