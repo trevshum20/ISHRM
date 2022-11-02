@@ -3,25 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ISHRM.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class foreignkeyalert : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Alerts",
-                columns: table => new
-                {
-                    AlertID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    AlertName = table.Column<string>(nullable: false),
-                    Completed = table.Column<bool>(nullable: false),
-                    StartAlert = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Alerts", x => x.AlertID);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Courses",
                 columns: table => new
@@ -184,6 +169,29 @@ namespace ISHRM.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Alerts",
+                columns: table => new
+                {
+                    AlertID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    AlertName = table.Column<string>(nullable: false),
+                    Completed = table.Column<bool>(nullable: false),
+                    StartAlert = table.Column<DateTime>(nullable: false),
+                    StudentEmploymentID = table.Column<int>(nullable: false),
+                    Student_EmploymentStudentEmploymentID = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Alerts", x => x.AlertID);
+                    table.ForeignKey(
+                        name: "FK_Alerts_Employees_Student_EmploymentStudentEmploymentID",
+                        column: x => x.Student_EmploymentStudentEmploymentID,
+                        principalTable: "Employees",
+                        principalColumn: "StudentEmploymentID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "Courses",
                 columns: new[] { "CourseID", "CourseCode", "CourseName" },
@@ -298,6 +306,11 @@ namespace ISHRM.Migrations
                 table: "Supervisors",
                 columns: new[] { "SupervisorID", "SupervisorFirstName", "SupervisorLastName" },
                 values: new object[] { 4, "Degan", "Kettles" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Alerts_Student_EmploymentStudentEmploymentID",
+                table: "Alerts",
+                column: "Student_EmploymentStudentEmploymentID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_CourseID",

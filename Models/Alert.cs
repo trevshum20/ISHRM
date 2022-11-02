@@ -18,5 +18,9 @@ namespace ISHRM.Models
 
         [Required]
         public DateTime StartAlert { get; set; }
+
+        [Required]
+        public int StudentEmploymentID { get; set; }
+        public Student_Employment Student_Employment { get; set; }
     }
 }
