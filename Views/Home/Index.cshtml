@@ -1,7 +1,21 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+<div style=" text-align: center;" >
+    <h2>Alerts</h2>
+    @foreach (Alert a in ViewBag.alerts)
+    {
+        <div class="alert alert-secondary d-flex justify-content-between" role="alert">
+            <div>
+                <span class="mr-3">@a.AlertName</span>
+                <span class="mr-3">@a.StartAlert</span>
+                @*<span class="mr-3">@a.Student_Employment.Student.FirstName @a.Student_Employment.Student.LastName</span>*@
+                <a asp-controller="Home" asp-action="EditEmployee" asp-route-id="@a.StudentEmploymentID" >@a.Student_Employment.Student.FirstName @a.Student_Employment.Student.LastName</a>
+            </div>
+            <a asp-controller="Home" asp-action="ClearAlert" asp-route-id="@a.AlertID" class="btn btn-success">Complete</a>
+        </div>
+    }
+</div>
 <h2 class="text-center my-3">IS Department Employee Database</h2>
 <div class="d-flex justify-content-center flex-wrap">
     <div class="card mr-2" style="width: 18rem;">

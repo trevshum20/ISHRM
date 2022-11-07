@@ -22,8 +22,22 @@ namespace ISHRM.Models
                 s.ProgramYear = context.ProgramYears.Where(x => x.ProgramID == s.ProgramID).First();
                 s.Semester_Year = context.SemesterYears.Where(x => x.SemesterYearID == s.SemesterYearID).First();
             }
-            return employees;
+            return employees; 
         }
+
+        public IQueryable<Alert> GetAlerts()
+        {
+            var now = DateTime.Now; 
+            IQueryable<Alert> alerts = context.Alerts.Include(x => x.Student_Employment).Where(x => x.StartAlert < now && x.Completed == false);
+            foreach (Alert a in alerts)
+            {
+                a.Student_Employment = GetEmployees().Where(x => x.StudentEmploymentID == a.StudentEmploymentID).First();
+            }
+
+            return alerts;
+        }
+
+
         public IQueryable<Alert> Alerts => context.Alerts;
         public IQueryable<Course> Course => context.Courses;
         public IQueryable<Position> Positions => context.Positions;
@@ -31,6 +45,12 @@ namespace ISHRM.Models
         public IQueryable<Semester_Year> SemesterYears => context.SemesterYears;
         public IQueryable<Supervisor> Supervisors => context.Supervisors;
 
+
+        public void CreateAlert(Alert alert)
+        {
+            context.Add(alert);
+            context.SaveChanges();
+        }
 
         public void CreateStudentEmployee(Student_Employment student)
         {
@@ -50,6 +70,12 @@ namespace ISHRM.Models
         public void DeleteStudentEmployee(Student_Employment student)
         {
             context.Employees.Remove(student);
+            context.SaveChanges();
+        }
+
+        public void ResolveAlert(Alert alert)
+        {
+            alert.Completed = true;
             context.SaveChanges();
         }
 

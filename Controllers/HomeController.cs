@@ -20,8 +20,31 @@ namespace ISHRM.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var now = DateTime.Now;
+
+            if ((now.Month == 8 && now.Day == 28 ) || (now.Month == 1 && now.Day == 10))
+            {
+                Alert a = new Alert();
+                a.AlertName = "Pay Raises!";
+                a.Completed = false;
+                a.StartAlert = now;
+                a.StudentEmploymentID = 1;
+
+                repo.CreateAlert(a);
+            }
+
+            ViewBag.alerts = repo.GetAlerts();
+            return View(); 
         }
+
+        public IActionResult ClearAlert(int id)
+        {
+            Alert a = repo.GetAlerts().Where(x => x.AlertID == id).FirstOrDefault();
+            repo.ResolveAlert(a);
+
+            return RedirectToAction("Index");
+        }
+
         public IActionResult EditEmployee(int id)
         {
             ViewBag.Supervisors = repo.Supervisors;
@@ -41,6 +64,8 @@ namespace ISHRM.Controllers
         }
         public IActionResult CreateEmployee()
         {
+            
+
             ViewBag.Supervisors = repo.Supervisors;
             ViewBag.SemesterYears = repo.SemesterYears;
             ViewBag.Positions = repo.Positions;
@@ -51,7 +76,37 @@ namespace ISHRM.Controllers
         [HttpPost]
         public IActionResult CreateEmployee(Student_Employment stu)
         {
+            
+
             repo.CreateStudentEmployee(stu);
+
+            var weekToday = DateTime.Now.AddDays(7);
+            var a = new Alert();
+            a.AlertName = "Finish Authorization to work!";
+            a.Completed = false;
+            a.StartAlert = weekToday;
+            a.StudentEmploymentID = stu.StudentEmploymentID;
+
+            repo.CreateAlert(a);
+
+            var a1 = new Alert();
+            a1.AlertName = "Get eform from student";
+            a1.Completed = false;
+            a1.StartAlert = weekToday;
+            a1.StudentEmploymentID = stu.StudentEmploymentID;
+
+            repo.CreateAlert(a1);
+
+            var a2 = new Alert();
+            a2.AlertName = "Send Authorization to begin work email";
+            a2.Completed = false;
+            a2.StartAlert = weekToday;
+            a2.StudentEmploymentID = stu.StudentEmploymentID;
+
+            repo.CreateAlert(a2);
+
+
+
 
             return RedirectToAction("EmployeeData");
         }
