@@ -2,25 +2,29 @@
 @{
 }
 
+@using ISHRM.Models
+@model Student_Employment
 <h2 class="text-center my-3">Employee Data</h2>
 
-<form class="d-flex justify-content-center align-items-center mb-3">
+@*Filter By Supervisor and Semester*@
+<form method="post" asp-controller="Home" asp-action="EmployeeData"
+      class="d-flex justify-content-center align-items-center mb-3">
     <span class="mr-5">Filter By:</span>
-    <select class="form-control w-auto mr-3">
-        <option hidden>Supervisor</option>
-        <option>Greg Anderson</option>
-        <option>Degan Kettles</option>
-        <option>Spencer Hilton</option>
-        <option>All</option>
+    <select asp-for="SupervisorID" class="form-control w-auto mr-3">
+        <option value="" hidden>Supervisor</option>
+        <option value="">All</option>
+        @foreach (Supervisor s in ViewBag.Supervisors)
+        {
+            <option id="SupervisorID" value="@s.SupervisorID">@s.SupervisorFirstName @s.SupervisorLastName</option>
+        }
     </select>
-    <select class="form-control w-auto mr-5">
-        <option hidden>Semester</option>
-        <option>Current Semester</option>
-        <option>Fall 2021</option>
-        <option>Winter 2022</option>
-        <option>Spring 2022</option>
-        <option>Summer 2022</option>
-        <option>All</option>
+    <select asp-for="SemesterYearID" class="form-control w-auto mr-5">
+        <option value="" hidden>Semester</option>
+        <option value="">All</option>
+        @foreach (Semester_Year s in ViewBag.Semesters)
+        {
+            <option id="SemesterYearID" value="@s.SemesterYearID">@s.SemesterName @s.Year</option>
+        }
     </select>
     <button class="btn btn-primary mr-2" type="submit">Filter</button>
     <a class="btn btn-danger" asp-controller="Home" asp-action="EmployeeData">Clear</a>
