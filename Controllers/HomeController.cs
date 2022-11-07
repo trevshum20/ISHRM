@@ -79,7 +79,7 @@ namespace ISHRM.Controllers
 
             repo.CreateStudentEmployee(stu);
 
-            var weekToday = DateTime.Now.AddDays(7);
+            var weekToday = DateTime.Now.AddDays(-1);
             var a = new Alert();
             a.AlertName = "Finish Authorization to work!";
             a.Completed = false;

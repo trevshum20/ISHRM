@@ -28,7 +28,11 @@ namespace ISHRM.Models
         public IQueryable<Alert> GetAlerts()
         {
             var now = DateTime.Now; 
-            IQueryable<Alert> alerts = context.Alerts.Include(x => x.Student_Employment).Where(x => x.StartAlert > now);
+            IQueryable<Alert> alerts = context.Alerts.Include(x => x.Student_Employment).Where(x => x.StartAlert < now && x.Completed == false);
+            foreach (Alert a in alerts)
+            {
+                a.Student_Employment = GetEmployees().Where(x => x.StudentEmploymentID == a.StudentEmploymentID).First();
+            }
 
             return alerts;
         }
