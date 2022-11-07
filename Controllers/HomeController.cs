@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ISHRM.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ISHRM.Controllers
 {
@@ -57,6 +58,25 @@ namespace ISHRM.Controllers
         public IActionResult EmployeeData()
         {
             ViewBag.Employees = repo.GetEmployees();
+
+            ViewBag.Supervisors = repo.Supervisors.ToList();
+
+            ViewBag.Semesters = repo.SemesterYears.ToList();
+
+            return View();
+        }
+        [HttpPost]
+        public IActionResult EmployeeData(int SupervisorID, int SemesterYearID)
+        {
+
+            ViewBag.Employees = repo.GetEmployees()
+                .Where(s => s.SupervisorID == SupervisorID || SupervisorID == 0)
+                .Where(s => s.SemesterYearID == SemesterYearID || SemesterYearID == 0);
+
+            ViewBag.Supervisors = repo.Supervisors.ToList();
+
+            ViewBag.Semesters = repo.SemesterYears.ToList();
+
             return View();
         }
         public IActionResult DeleteEmployee(int id)
