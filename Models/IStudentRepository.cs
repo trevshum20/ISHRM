@@ -9,7 +9,7 @@ namespace ISHRM.Models
     {
         IQueryable<Student> Students { get; }
         IQueryable<Student_Employment> GetEmployees();
-        IQueryable<Alert> Alerts { get; }
+        IQueryable<Alert> GetAlerts();
         IQueryable<Course> Course { get; }
         IQueryable<Position> Positions { get; }
         IQueryable<ProgramYear> ProgramYears { get; }
@@ -19,6 +19,8 @@ namespace ISHRM.Models
         void EditStudentEmployee(Student_Employment student);
         void DeleteStudentEmployee(Student_Employment student);
         void FilterStudentList(int supervisorid, int semesteryearid);
+        void ResolveAlert(Alert alert);
+        void CreateAlert(Alert alert);
 
     }
 }

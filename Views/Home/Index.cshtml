@@ -1,7 +1,21 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+<h2 style=" text-align: center;">Alerts</h2>
+@foreach (Alert a in ViewBag.alerts)
+{
+    <tr>
+        <th scope="row">@a.AlertID</th>
+        <td>@a.AlertName</td>
+        <td>@a.StartAlert</td>
+        @*<td>@a.Student_Employment.Student.FirstName</td>*@
+        <td>
+            <div class="btn-group" role="group" aria-label="Edit/Delete Buttons">
+                <a asp-controller="Home" asp-action="ClearAlert" asp-route-id="@a.AlertID" class="btn btn-primary px-4">Complete</a>
+            </div>
+        </td>
+    </tr>
+}
 <h2 class="text-center my-3">IS Department Employee Database</h2>
 <div class="d-flex justify-content-center flex-wrap">
     <div class="card mr-2" style="width: 18rem;">
